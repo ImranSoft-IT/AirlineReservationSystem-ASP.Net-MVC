@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirReservationDBMvcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookingFlight">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromPlace" Type="varchar" MaxLength="100" />
+    <Property Name="Destination" Type="varchar" MaxLength="100" />
+    <Property Name="FlightDate" Type="varchar" MaxLength="60" />
+    <Property Name="PassengerID" Type="int" />
+    <Property Name="CountryID" Type="int" />
+    <Property Name="FlightID" Type="int" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="travelCost" Type="int" />
+  </EntityType>
+  <EntityType Name="FlightInfo">
+    <Key>
+      <PropertyRef Name="FlightID" />
+    </Key>
+    <Property Name="FlightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlightNunber" Type="varchar" MaxLength="20" />
+    <Property Name="TakeOff" Type="varchar" MaxLength="60" />
+    <Property Name="Landing" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="PassengerInfo">
+    <Key>
+      <PropertyRef Name="PassengerID" />
+    </Key>
+    <Property Name="PassengerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" />
+    <Property Name="DateOfBirth" Type="varchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="80" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="passportNo" Type="varchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK__BookingFl__Count__3D5E1FD2">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="BookingFlight" Type="Self.BookingFlight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="BookingFlight">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingFl__Fligh__3E52440B">
+    <End Role="FlightInfo" Type="Self.FlightInfo" Multiplicity="0..1" />
+    <End Role="BookingFlight" Type="Self.BookingFlight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlightInfo">
+        <PropertyRef Name="FlightID" />
+      </Principal>
+      <Dependent Role="BookingFlight">
+        <PropertyRef Name="FlightID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingFl__Passe__3C69FB99">
+    <End Role="PassengerInfo" Type="Self.PassengerInfo" Multiplicity="0..1" />
+    <End Role="BookingFlight" Type="Self.BookingFlight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassengerInfo">
+        <PropertyRef Name="PassengerID" />
+      </Principal>
+      <Dependent Role="BookingFlight">
+        <PropertyRef Name="PassengerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AirReservationDBMvcModelStoreContainer">
+    <EntitySet Name="BookingFlight" EntityType="Self.BookingFlight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlightInfo" EntityType="Self.FlightInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PassengerInfo" EntityType="Self.PassengerInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BookingFl__Count__3D5E1FD2" Association="Self.FK__BookingFl__Count__3D5E1FD2">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="BookingFlight" EntitySet="BookingFlight" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingFl__Fligh__3E52440B" Association="Self.FK__BookingFl__Fligh__3E52440B">
+      <End Role="FlightInfo" EntitySet="FlightInfo" />
+      <End Role="BookingFlight" EntitySet="BookingFlight" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingFl__Passe__3C69FB99" Association="Self.FK__BookingFl__Passe__3C69FB99">
+      <End Role="PassengerInfo" EntitySet="PassengerInfo" />
+      <End Role="BookingFlight" EntitySet="BookingFlight" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

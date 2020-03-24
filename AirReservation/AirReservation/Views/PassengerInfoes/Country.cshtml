@@ -1,0 +1,50 @@
+﻿@model AirReservation.Models.SelectedInfoModel
+
+    @*<style>
+        body {
+            background-image: url('../../Images/Slide/aeroplane3.jpg');
+            background-repeat: initial;
+            background-size: cover;
+        }
+    </style>*@
+
+@if (Model.countries != null)
+{
+    <h1 style="text-align:center; color:#468ce6">Country wise cost</h1>
+    <table class="table">
+        <tr style="background-color:#Fcbf29">
+            <th>
+                Country
+            </th>
+            <th>
+                Travel Cost
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+
+        @foreach (var item in Model.countries)
+        {
+            <tr style="background-color:#212529; color:white; font-size:medium">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.travelCost)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.CountryID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CountryID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CountryID })*@
+
+                    <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.CountryID }, new { @style = "color:white" })</button>
+                    <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.CountryID }, new { @style = "color:white" })</button>
+                    <button type="button" class="btn btn-primary">@Html.ActionLink("Delete", "Delete", new { id = item.CountryID }, new { @style = "color:white" })</button>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}

@@ -1,0 +1,86 @@
+﻿@model PagedList.IPagedList<AirReservation.Models.FlightInfo>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@*@model IEnumerable<AirReservation.Models.FlightInfo>*@
+
+@{
+    ViewBag.Title = "BookingFlight";
+}
+<style>
+    body {
+        background-image: url('../../Images/Slide/aeroplane7.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<h2 style="text-align:center; color:white">Flight information</h2>
+
+@using (Ajax.BeginForm("Index", "FlightInfoes",new AjaxOptions() { HttpMethod = "GET"}))
+{
+    <div class="form-group">
+        @Html.Label("Search Flight Number: ", new { @class = "col-md-2 control-label", @style="color:white"})
+        <div class="col-md-6">
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "max-width:100%", @placeholder = "Search Flight Number here..." })
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </div>
+    </div>
+}
+<br />
+<br />
+
+<table class="table">
+    <tr style="background-color:#fcbf29;">
+        <th>
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @*@Html.DisplayNameFor(model => model.FlightNunber)*@
+        </th>
+        <th>
+            Take Off
+            @*@Html.DisplayNameFor(model => model.TakeOff)*@
+        </th>
+        <th>
+            Landing
+            @*@Html.DisplayNameFor(model => model.Landing)*@
+        </th>
+        <th>Options</th>
+    </tr>
+
+   @foreach (var item in Model)
+    {
+        <tr style="background-color:#27416e; color:white; font-size:medium">
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNunber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TakeOff)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Landing)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.FlightID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FlightID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FlightID })*@
+
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.FlightID }, new { @style = "color:white" })</button>
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.FlightID }, new { @style = "color:white" })</button>
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Delete", "Delete", new { id = item.FlightID }, new { @style = "color:white" })</button>
+
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Create New", "Create", null, new { @style = "color:white" })</button>
+</p>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder = ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))

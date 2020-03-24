@@ -1,0 +1,65 @@
+﻿@model AirReservation.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+    <style>
+        body {
+            background-image: url('../../Images/Slide/airplane1.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+<h2 style="text-align:center; color:white">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4 style="color:white" >Create a new account</h4>
+    <hr />
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label", @style="color:white" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label", @style="color:white"  })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label", @style="color:white"  })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class = "col-md-2 control-label" style="color:white" >Roll List: </label>
+        <div class="col-md-10">
+            @{
+                List<AirReservation.Models.Admin_RollCreation> tmpList = (List<AirReservation.Models.Admin_RollCreation>)ViewBag.RollList;
+            }
+            @Html.DropDownList("roleName", tmpList.Select(item => new SelectListItem { Value = item.RoleName, Text = item.RoleName }))
+        </div>
+    </div>
+
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" class="btn btn-default" value="Register" />
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Back to the Login", "Login", null, new { @style = "font-size:18px;" })
+</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirReservationDBMvcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BookingFlight">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromPlace" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Destination" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FlightDate" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="PassengerID" Type="Int32" />
+    <Property Name="CountryID" Type="Int32" />
+    <Property Name="FlightID" Type="Int32" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__BookingFl__Count__3D5E1FD2" FromRole="BookingFlight" ToRole="Countries" />
+    <NavigationProperty Name="FlightInfo" Relationship="Self.FK__BookingFl__Fligh__3E52440B" FromRole="BookingFlight" ToRole="FlightInfo" />
+    <NavigationProperty Name="PassengerInfo" Relationship="Self.FK__BookingFl__Passe__3C69FB99" FromRole="BookingFlight" ToRole="PassengerInfo" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Country1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="travelCost" Type="Int32" />
+    <NavigationProperty Name="BookingFlights" Relationship="Self.FK__BookingFl__Count__3D5E1FD2" FromRole="Countries" ToRole="BookingFlight" />
+  </EntityType>
+  <EntityType Name="FlightInfo">
+    <Key>
+      <PropertyRef Name="FlightID" />
+    </Key>
+    <Property Name="FlightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlightNunber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TakeOff" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Landing" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BookingFlights" Relationship="Self.FK__BookingFl__Fligh__3E52440B" FromRole="FlightInfo" ToRole="BookingFlight" />
+  </EntityType>
+  <EntityType Name="PassengerInfo">
+    <Key>
+      <PropertyRef Name="PassengerID" />
+    </Key>
+    <Property Name="PassengerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="passportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BookingFlights" Relationship="Self.FK__BookingFl__Passe__3C69FB99" FromRole="PassengerInfo" ToRole="BookingFlight" />
+  </EntityType>
+  <Association Name="FK__BookingFl__Count__3D5E1FD2">
+    <End Role="Countries" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="BookingFlight" Type="Self.BookingFlight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="BookingFlight">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingFl__Fligh__3E52440B">
+    <End Role="FlightInfo" Type="Self.FlightInfo" Multiplicity="0..1" />
+    <End Role="BookingFlight" Type="Self.BookingFlight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlightInfo">
+        <PropertyRef Name="FlightID" />
+      </Principal>
+      <Dependent Role="BookingFlight">
+        <PropertyRef Name="FlightID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingFl__Passe__3C69FB99">
+    <End Role="PassengerInfo" Type="Self.PassengerInfo" Multiplicity="0..1" />
+    <End Role="BookingFlight" Type="Self.BookingFlight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassengerInfo">
+        <PropertyRef Name="PassengerID" />
+      </Principal>
+      <Dependent Role="BookingFlight">
+        <PropertyRef Name="PassengerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AirReservationDBMvcEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookingFlights" EntityType="Self.BookingFlight" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="FlightInfoes" EntityType="Self.FlightInfo" />
+    <EntitySet Name="PassengerInfoes" EntityType="Self.PassengerInfo" />
+    <AssociationSet Name="FK__BookingFl__Count__3D5E1FD2" Association="Self.FK__BookingFl__Count__3D5E1FD2">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="BookingFlight" EntitySet="BookingFlights" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingFl__Fligh__3E52440B" Association="Self.FK__BookingFl__Fligh__3E52440B">
+      <End Role="FlightInfo" EntitySet="FlightInfoes" />
+      <End Role="BookingFlight" EntitySet="BookingFlights" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingFl__Passe__3C69FB99" Association="Self.FK__BookingFl__Passe__3C69FB99">
+      <End Role="PassengerInfo" EntitySet="PassengerInfoes" />
+      <End Role="BookingFlight" EntitySet="BookingFlights" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

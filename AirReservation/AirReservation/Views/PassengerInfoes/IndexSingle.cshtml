@@ -1,0 +1,103 @@
+﻿@model AirReservation.Models.SelectedInfoModel
+@{
+    ViewBag.Title = "IndexSingle";
+}
+
+<style>
+    body {
+        background-image: url('../../Images/Slide/airplane5.jpg');
+        background-repeat: initial;
+        background-size: cover;
+    }
+</style>
+
+@Html.Partial("Country")
+@Html.Partial("ViewbookingFlights")
+
+
+<h1 style="text-align:center; font:bold; color:#468ce6">Passenger Information</h1>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr style="background-color:#Fcbf29">
+
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Date Of Birth
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Passport No
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+
+        @if (Model.passengers != null)
+        {
+            foreach (var item in Model.passengers)
+            {
+                <tr style="background-color:#082864; color:white; font-size:medium">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.passportNo)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.ImageUrl)" width="100" height="100" class="img-circle" />
+                        @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary">@Html.ActionLink("Select", "IndexSingle", new { PassengerId = item.PassengerID }, new { @style = "color:white" })</button>
+                        <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.PassengerID }, new { @style = "color:white" })</button>
+                        <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.PassengerID }, new { @style = "color:white" })</button>
+                        @*<button type="button" class="btn btn-primary">@Html.ActionLink("Delete", "Delete", new { id = item.PassengerID }, new { @style = "color:white" })</button>*@
+
+                        @*@Html.ActionLink("select", "IndexSingle", new { PassengerId = item.PassengerID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PassengerID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.PassengerID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PassengerID })*@
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
+
+
+

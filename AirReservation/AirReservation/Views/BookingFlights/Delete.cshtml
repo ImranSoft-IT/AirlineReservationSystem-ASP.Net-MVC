@@ -1,0 +1,80 @@
+﻿@model AirReservation.Models.BookingFlight
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<style>
+    body {
+        background-image: url('../../Images/Slide/900529.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<h2 style="text-align:center; color:#f0ae00">Delete Booking information</h2>
+
+<div>
+    <hr />
+    <h3 style="color:#f0ae00;">Are you sure you want to delete this?</h3>
+    <dl class="dl-horizontal" style="color:white; background-color:#f0ae00; font-size:medium; align-content:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.FromPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Country1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Country1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightInfo.FlightNunber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightInfo.FlightNunber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassengerInfo.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassengerInfo.FirstName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn" style="background-color:#f0ae00" />
+    <button type="button" class="btn" style="background-color:#f0ae00">@Html.ActionLink("Back to List", "Index", null, new { @style = "color:white" })</button>
+    
+</div>
+    }
+</div>

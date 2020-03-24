@@ -1,0 +1,78 @@
+﻿@model PagedList.IPagedList<AirReservation.Models.Country>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Country";
+}
+
+<h2 style="color:white; text-align:center">Country wise Travel cost</h2>
+<style>
+    body {
+        background-image: url('../../Images/Slide/airplane1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+@*@using (Html.BeginForm())
+    {
+        <p>Find by name: @Html.TextBox("SearchString")
+           <input type="submit" value="Search" /></p>
+    }*@
+
+@using (Html.BeginForm("Index", "Countries", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("Search Country: ", new { @class = "col-md-2 control-label", @style="color:white"})
+        <div class="col-md-6">
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "max-width:100%", @placeholder = "Search Country here..." })
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </div>
+    </div>
+}
+<br />
+<br />
+<p>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Create New", "Create", null, new { @style = "color:white" })</button>
+</p>
+
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.ActionLink("Country Name", "Index", new { SortOrder = ViewBag.SortOrder == null ? "Desc" : (ViewBag.SortOrder == "Desc" ? "Asc" : "Desc"), SortBy = "Country1" })
+            @*@Html.DisplayNameFor(model => model.Country1)*@
+        </th>
+        <th style="color:#3B7CB5">
+            @*@Html.DisplayNameFor(model => model.travelCost)*@
+            Travel Cost
+        </th>
+        <th style="color:#3B7CB5">
+            Options
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="info">
+            <td>
+                @Html.DisplayFor(modelItem => item.Country1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.travelCost)
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.CountryID }, new { @style = "color:white" })</button>
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.CountryID }, new { @style = "color:white" })</button>
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Delete", "Delete", new { id = item.CountryID }, new { @style = "color:white" })</button>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, SortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

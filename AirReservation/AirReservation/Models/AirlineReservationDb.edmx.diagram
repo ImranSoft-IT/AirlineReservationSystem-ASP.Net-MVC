@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d16d2bf722424761aeca6ce41289307f" Name="Diagram1">
+        <EntityTypeShape EntityType="AirReservationDBMvcModel.BookingFlight" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirReservationDBMvcModel.Country" Width="1.5" PointX="1.125" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirReservationDBMvcModel.FlightInfo" Width="1.5" PointX="1.125" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirReservationDBMvcModel.PassengerInfo" Width="1.5" PointX="6.375" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="AirReservationDBMvcModel.FK__BookingFl__Count__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="AirReservationDBMvcModel.FK__BookingFl__Fligh__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="AirReservationDBMvcModel.FK__BookingFl__Passe__3C69FB99" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

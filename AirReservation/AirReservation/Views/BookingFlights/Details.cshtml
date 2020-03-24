@@ -1,0 +1,74 @@
+﻿@model AirReservation.Models.BookingFlight
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    body {
+        background-image: url('../../Images/Slide/900529.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<h2 style="text-align:center; color:#f0ae00">Details Booking information</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal" style="color:white; background-color:#f0ae00; font-size:medium; align-content:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.FromPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Country1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Country1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightInfo.FlightNunber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightInfo.FlightNunber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassengerInfo.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassengerInfo.FirstName)
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    <button type="button" class="btn" style="background-color:#f0ae00">@Html.ActionLink("Edit", "Edit", new { id = Model.BookID }, new { @style = "color:white" })</button>
+    <button type="button" class="btn" style="background-color:#f0ae00">@Html.ActionLink("Back to List", "Index", null, new { @style = "color:white" })</button>
+</p>

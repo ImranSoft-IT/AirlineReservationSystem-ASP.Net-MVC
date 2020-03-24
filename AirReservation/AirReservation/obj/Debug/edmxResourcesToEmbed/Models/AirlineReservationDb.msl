@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AirReservationDBMvcModelStoreContainer" CdmEntityContainer="AirReservationDBMvcEntities">
+    <EntitySetMapping Name="BookingFlights">
+      <EntityTypeMapping TypeName="AirReservationDBMvcModel.BookingFlight">
+        <MappingFragment StoreEntitySet="BookingFlight">
+          <ScalarProperty Name="BookID" ColumnName="BookID" />
+          <ScalarProperty Name="FromPlace" ColumnName="FromPlace" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="FlightDate" ColumnName="FlightDate" />
+          <ScalarProperty Name="PassengerID" ColumnName="PassengerID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="AirReservationDBMvcModel.Country">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Country1" ColumnName="Country" />
+          <ScalarProperty Name="travelCost" ColumnName="travelCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlightInfoes">
+      <EntityTypeMapping TypeName="AirReservationDBMvcModel.FlightInfo">
+        <MappingFragment StoreEntitySet="FlightInfo">
+          <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+          <ScalarProperty Name="FlightNunber" ColumnName="FlightNunber" />
+          <ScalarProperty Name="TakeOff" ColumnName="TakeOff" />
+          <ScalarProperty Name="Landing" ColumnName="Landing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PassengerInfoes">
+      <EntityTypeMapping TypeName="AirReservationDBMvcModel.PassengerInfo">
+        <MappingFragment StoreEntitySet="PassengerInfo">
+          <ScalarProperty Name="PassengerID" ColumnName="PassengerID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="passportNo" ColumnName="passportNo" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

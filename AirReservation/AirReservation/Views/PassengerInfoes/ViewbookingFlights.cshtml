@@ -1,0 +1,73 @@
+﻿@model AirReservation.Models.SelectedInfoModel
+
+    @*<style>
+        body {
+            background-image: url('../../Images/Slide/aeroplane3.jpg');
+            background-repeat: initial;
+            background-size: cover;
+        }
+    </style>*@
+
+@if (Model.bookingFlights != null)
+{
+    <h1 style="text-align:center; color:#468ce6">Booking Flight</h1>
+    <table class="table">
+        <tr style="background-color:#Fcbf29">
+            <th>
+                From Place
+            </th>
+            <th>
+                Destination
+            </th>
+            <th>
+                Flight Date
+            </th>
+            <th>
+                Country
+            </th>
+            <th>
+                Flight Number
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model.bookingFlights)
+        {
+
+            <tr style="background-color:#082864; color:white; font-size:medium">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromPlace)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Country1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightInfo.FlightNunber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassengerInfo.FirstName)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Select", "IndexSingle", new { CountryId = item.CountryID }, null)|
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookID })*@
+
+                    <button type="button" class="btn btn-primary">@Html.ActionLink("Select", "IndexSingle", new { CountryId = item.CountryID }, new { @style = "color:white" })</button>
+                    <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.BookID }, new { @style = "color:white" })</button>
+                    <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.BookID }, new { @style = "color:white" })</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+}

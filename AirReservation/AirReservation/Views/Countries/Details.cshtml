@@ -1,0 +1,40 @@
+﻿@model AirReservation.Models.Country
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="color:white; text-align:center">Details Country wise Travel cost</h2>
+<style>
+    body {
+        background-image: url('../../Images/Slide/airplane1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="color:white;">
+        <dt>
+            @Html.DisplayNameFor(model => model.Country1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.travelCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.travelCost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = Model.CountryID }, new { @style = "color:white" })</button>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Back to List", "Index", null, new { @style = "color:white" })</button>
+</p>

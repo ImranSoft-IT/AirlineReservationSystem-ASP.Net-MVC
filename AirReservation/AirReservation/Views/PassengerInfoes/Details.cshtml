@@ -1,0 +1,90 @@
+﻿@model AirReservation.Models.PassengerInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    body {
+        background-image: url('../../Images/Slide/aeroplane.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<h1 style="text-align:center; color:white">Passenger Details</h1>
+
+<div style="background-color:#212529; color:white; font-size:medium">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passportNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passportNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImageUrl)" width="100" height="100" />
+            @*@Html.DisplayFor(model => model.ImageUrl)*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = Model.PassengerID }, new { @style = "color:white" })</button>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Back to List", "Index", null, new { @style = "color:white" })</button>
+</p>
